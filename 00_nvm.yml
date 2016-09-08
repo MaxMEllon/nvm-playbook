@@ -1,0 +1,10 @@
+- hosts: all
+  pre_tasks:
+    - name: (env) Get ansible_user home directory
+      shell: 'getent passwd "{{ansible_ssh_user}}" | cut -d: -f6'
+      register: ansible_home_result
+
+  tasks:
+    - name: (nvm) install
+      shell: wget -qO- https://raw.githubusercontent.com/creationix/nvm/v0.31.7/install.sh | bash
+      shell: . {{ansible_home_result.stdout}}/.nvm/nvm.sh && nvm install v6.5.0
