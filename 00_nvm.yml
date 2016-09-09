@@ -1,10 +1,17 @@
 - hosts: all
-  pre_tasks:
-    - name: (env) Get ansible_user home directory
-      shell: 'getent passwd "{{ansible_ssh_user}}" | cut -d: -f6'
-      register: ansible_home_result
-
+  sudo: yes
   tasks:
-    - name: (nvm) install
-      shell: wget -qO- https://raw.githubusercontent.com/creationix/nvm/v0.31.7/install.sh | bash
-      shell: . {{ansible_home_result.stdout}}/.nvm/nvm.sh && nvm install v6.5.0 && nvm alias global v6.5.0
+    - name: (nvm) clone nvm
+      git:
+        repo: 'git://github.com/creationix/nvm.git'
+        dest: /usr/local/nvm
+
+    - name: (nvm) export config
+      shell: mkdir -p /etc/profile.d
+             && echo 'source /usr/local/nvm/nvm.sh' > /etc/profile.d/nvm.sh
+             && bash /etc/profile.d/nvm.sh
+
+    - name: (nvm) install node
+      shell: bash -lc 'nvm install v6.5.0'
+      shell: bash -lc 'nvm alias global v6.5.0'
+
