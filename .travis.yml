@@ -1,0 +1,23 @@
+language: ruby
+rvm: 2.2.2
+sudo: true
+
+os:
+  - linux
+
+env:
+  global:
+    - npm_dir=${NVM_PATH}_modules
+    - NODE_PATH=${npm_dir}
+
+install: bundle install -j 4
+cache:
+  directories: vendor/bundle
+
+before_script:
+  - sudo apt-get install ansible
+  - echo 127.0.0.1 > hosts
+
+script:
+  - ansible-playbook -i hosts playbook.yml --connection=local
+  - bash -lc ". ~/.nvm/nvm.sh && bundle exec rspec"

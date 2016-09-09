@@ -1,5 +1,9 @@
 # nvm-playbook
 
+<a href='https://travis-ci.org/MaxMEllon/nvm-playbook' />
+  <img src='https://travis-ci.org/MaxMEllon/nvm-playbook.svg?branch=master' />
+</a>
+
 About
 ---
 
