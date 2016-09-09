@@ -9,9 +9,3 @@
     - name: (nvm) export config
       shell: mkdir -p /etc/profile.d
              && echo 'source /usr/local/nvm/nvm.sh' > /etc/profile.d/nvm.sh
-             && bash /etc/profile.d/nvm.sh
-
-    - name: (nvm) install node
-      shell: bash -lc 'nvm install v6.5.0'
-      shell: bash -lc 'nvm alias global v6.5.0'
-

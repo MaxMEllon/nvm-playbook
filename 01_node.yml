@@ -1,0 +1,5 @@
+- hosts: all
+  sudo: yes
+  tasks:
+    - name: (nvm) install node
+      shell: bash -lc 'nvm install v6.5.0 && nvm alias default v6.5.0'

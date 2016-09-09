@@ -20,4 +20,4 @@ before_script:
 
 script:
   - ansible-playbook -i hosts playbook.yml --connection=local
-  - bash -lc ". ~/.nvm/nvm.sh && bundle exec rspec"
+  - bash -lc ". /etc/profile.d/nvm.sh && bundle exec rspec"
